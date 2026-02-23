@@ -1,0 +1,396 @@
+
+<!doctype html>
+<html lang="vi">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Portfolio — Dự án của tôi</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<style>
+			/* Tùy chỉnh nhỏ */
+			/* using Tailwind's max-w-6xl + mx-auto for centering */
+			/* Hero floating animation */
+			@keyframes floatY {
+				0% { transform: translateY(0); }
+				50% { transform: translateY(-12px); }
+				100% { transform: translateY(0); }
+			}
+			.hero-float { animation: floatY 4s ease-in-out infinite; }
+
+				/*
+				  Circle spin animation (service background):
+				  - Creates a blurred pastel circle behind each icon
+				  - Rotates continuously clockwise using the `spin` keyframes
+				  - `filter: blur()` provides the soft, out-of-focus effect
+				*/
+				@keyframes spin {
+					from { transform: rotate(0deg); }
+					to { transform: rotate(360deg); }
+				}
+				.service-circle {
+					filter: blur(18px);
+					opacity: 0.95;
+					animation: spin 12s linear infinite; /* adjust duration to speed up/slow down */
+					transform-origin: center;
+					pointer-events: none;
+				}
+
+				/* Hover effects for project images */
+				.project-split img {
+					transition: transform 0.36s ease, filter 0.36s ease, box-shadow 0.36s ease;
+				}
+				.project-split img:hover {
+					transform: scale(1.03);
+					filter: saturate(1.06);
+					box-shadow: 0 12px 30px rgba(2,6,23,0.08);
+				}
+				/* Modal basics when using Tailwind utility classes */
+				.modal-backdrop { background: rgba(0,0,0,0.6); }
+
+				/* Basic dark mode tweaks (toggled by adding `dark` class on body) */
+				body.dark { background-color: #0b1220; color: #e6eef8; }
+				body.dark .bg-white { background-color: #0f1724; }
+				body.dark .text-gray-600 { color: #cbd5e1; }
+				body.dark .text-gray-700 { color: #cbd5e1; }
+				body.dark .border-gray-200 { border-color: rgba(255,255,255,0.06); }
+		</style>
+	</head>
+	<body class="bg-gray-50 text-gray-800 antialiased">
+		<!-- Navbar -->
+		<header class="bg-white shadow-sm">
+			<div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+				<a href="#" class="text-xl font-bold text-indigo-600">MyPortfolio</a>
+				<nav class="hidden md:flex gap-6 items-center">
+					<a href="#" class="hover:text-indigo-600">Giới thiệu</a>
+					<a href="#projects" class="hover:text-indigo-600">Dự án</a>
+					<a href="#contact" class="hover:text-indigo-600">Liên hệ</a>
+				</nav>
+						<!-- Theme toggle -->
+						<button id="themeToggle" class="hidden md:inline-flex items-center justify-center w-9 h-9 bg-gray-100 rounded-full mr-3" aria-label="Toggle theme">🌙</button>
+						<div class="md:hidden">
+					<button id="menuBtn" aria-label="Mở menu" class="text-gray-600 focus:outline-none">☰</button>
+				</div>
+			</div>
+			<!-- Mobile menu (hidden by default) -->
+			<div id="mobileMenu" class="md:hidden hidden border-t">
+				<div class="px-6 py-4 flex flex-col gap-3">
+					<a href="#">Giới thiệu</a>
+					<a href="#projects">Dự án</a>
+					<a href="#contact">Liên hệ</a>
+				</div>
+			</div>
+		</header>
+
+		<!-- Hero -->
+		<main class="max-w-6xl mx-auto px-6 py-16">
+			<section class="grid md:grid-cols-2 gap-8 items-center">
+				<div>
+					<h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Xin chào, tôi là <span class="text-indigo-600">DUONG KIEU TRAM</span></h1>
+					<p class="text-lg text-gray-600 mb-6">Phát triển Website toàn diện, tối ưu thứ hạng và hiệu suất kinh doanh cho website của bạn.</p>
+					<div class="flex gap-3">
+						<a href="#projects" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-md shadow hover:bg-indigo-700">Xem dự án</a>
+						<a href="assets/CV - Dương Kiều Trâm.pdf" target="_blank" rel="noopener noreferrer" class="inline-block bg-gray-700 text-white px-6 py-3 rounded-md shadow hover:bg-gray-800">Xem CV</a>
+					</div>
+				</div>
+				<div class="hidden md:block" data-aos="fade-left">
+					<div class="w-full rounded-lg overflow-hidden hero-float">
+						<img src="assets/img/hero-pic.png" alt="Hero image" class="w-full h-auto block" />
+					</div>
+				</div>
+			</section>
+
+
+
+			<!-- About -->
+			<section id="about" class="mt-12" data-aos="fade-up">
+				<h2 class="text-2xl font-bold mb-4">Giới thiệu bản thân</h2>
+				<p class="text-gray-600">Tôi có kinh nghiệm Phát triển Website tối ưu SEO, chuyên kiến tạo các giải pháp số giúp thương hiệu tăng trưởng thứ hạng và tiếp cận đúng tệp khách hàng mục tiêu. Bằng cách kết hợp tư duy thiết kế trải nghiệm với kỹ thuật lập trình chuẩn công cụ tìm kiếm, tôi cam kết mang lại những sản phẩm web bền vững, hiệu suất cao và tối ưu hóa tỉ lệ chuyển đổi.</p>
+			</section>
+
+			<!-- Skills (moved above Projects) -->
+			<section id="skills" class="mt-8" data-aos="fade-up">
+				<h2 class="text-2xl font-bold mb-4">Kỹ năng & Công cụ</h2>
+				<div class="flex flex-wrap gap-3">
+					<span class="inline-flex items-center gap-2 bg-white rounded-full px-3 py-2 shadow transition transform hover:-translate-y-1 hover:shadow-lg text-sm">
+						<span class="w-3 h-3 rounded-full" style="background:#007ACC"></span>
+						Web Design
+					</span>
+					<span class="inline-flex items-center gap-2 bg-white rounded-full px-3 py-2 shadow transition transform hover:-translate-y-1 hover:shadow-lg text-sm">
+						<span class="w-3 h-3 rounded-full" style="background:#F24E1E"></span>
+						Figma
+					</span>
+					<span class="inline-flex items-center gap-2 bg-white rounded-full px-3 py-2 shadow transition transform hover:-translate-y-1 hover:shadow-lg text-sm">
+						<span class="w-3 h-3 rounded-full" style="background:#61DAFB"></span>
+						Wordpress
+					</span>
+					<span class="inline-flex items-center gap-2 bg-white rounded-full px-3 py-2 shadow transition transform hover:-translate-y-1 hover:shadow-lg text-sm">
+						<span class="w-3 h-3 rounded-full" style="background:#0EA5A9"></span>
+						HTML&CSS
+					</span>
+					<span class="inline-flex items-center gap-2 bg-white rounded-full px-3 py-2 shadow transition transform hover:-translate-y-1 hover:shadow-lg text-sm">
+						<span class="w-3 h-3 rounded-full" style="background:#F7DF1E"></span>
+						SEO
+					</span>
+				</div>
+			</section>
+
+			<!-- Projects -->
+				<section id="projects" class="mt-16 space-y-12">
+					<h2 class="text-2xl font-bold mb-6">Dự án tiêu biểu</h2>
+					<!-- 1. Fival Space -->
+					<section class="project-split bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+						<div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-10 gap-6 items-start">
+							<div class="md:col-span-4 col-span-1">
+								<h3 class="text-xl font-bold">Fival Space</h3>
+								<p class="text-gray-600 mt-3">Chuyên viên tối ưu hóa tìm kiếm (SEO Specialist) — thực hiện chiến lược SEO tổng lực gồm On-page và Off-page.</p>
+								<div class="mt-4 flex gap-3">
+									<a href="#" class="open-project inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700" data-title="Fival Space" data-desc="<ul class='list-disc pl-5 text-sm'><li>Nghiên cứu và xây dựng bộ từ khóa chiến lược, bao quát toàn bộ hành trình khách hàng.</li><li>Tối ưu hóa cấu trúc website và các yếu tố kỹ thuật (On-page) để tăng trải nghiệm người dùng.</li><li>Triển khai hệ thống liên kết (Off-page) uy tín nhằm nâng cao thứ hạng website trên công cụ tìm kiếm.</li></ul>" data-tech="SEO,On-page,Off-page" data-gallery="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1508830524289-0adcbe822b40?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1555949963-aa79dcee981d?auto=format&fit=crop&w=1200&q=80">View Details</a>
+                                   
+								</div>
+								<ul class="text-sm text-gray-600 mt-4 space-y-1">
+									<li><strong>Type:</strong> SEO Campaign</li>
+									<li><strong>Date:</strong> 2026</li>
+									<li><strong>Outcome:</strong> Chiến lược từ khóa toàn diện</li>
+								</ul>
+							</div>
+							<div class="md:col-span-6 col-span-1">
+								<div class="grid grid-cols-6 grid-rows-4 gap-2 h-full">
+									<img src="assets/img/FivalSpace-1.jpg" class="col-span-4 row-span-4 object-cover w-full h-full rounded" alt="Fival 1" />
+									<img src="assets/img/FivalSpace-2.jpg" class="col-span-2 row-span-2 object-cover w-full h-full rounded" alt="Fival 2" />
+                                    <img src="assets/img/FivalSpace-3.jpg" class="col-span-2 row-span-2 object-cover w-full h-full rounded hidden sm:block" alt="Fival 3" />
+                                </div>
+							</div>
+						</div>
+					</section>
+
+					<!-- 2. Du học Newlife -->
+					<section class="project-split bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+						<div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-10 gap-6 items-start">
+							<div class="md:col-span-4 col-span-1">
+								<h3 class="text-xl font-bold">Du học Newlife</h3>
+								<p class="text-gray-600 mt-3">Nhà phát triển Website — phân tích hệ thống, thiết kế UI/UX và xây dựng website.</p>
+								<div class="mt-4 flex gap-3">
+									<a href="#" class="open-project inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700" data-title="Du học Newlife" data-desc="<ul class='list-disc pl-5 text-sm'><li>Khảo sát nhu cầu người dùng để đưa ra giải pháp kiến trúc thông tin tối ưu.</li><li>Thiết kế giao diện hiện đại, chuyên nghiệp, phản ánh đúng tinh thần của thương hiệu du học.</li><li>Đảm bảo website vận hành ổn định, tốc độ tải trang nhanh và tương thích trên mọi thiết bị.</li></ul>" data-tech="UI/UX,Web Development,Performance" data-gallery="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1200&q=80">View Details</a>
+                                    
+								</div>
+								<ul class="text-sm text-gray-600 mt-4 space-y-1">
+									<li><strong>Type:</strong> Education Site</li>
+									<li><strong>Date:</strong> 2025</li>
+									<li><strong>Outcome:</strong> Thiết kế & vận hành ổn định</li>
+								</ul>
+							</div>
+							<div class="md:col-span-6 col-span-1">
+								<div class="grid grid-cols-6 grid-rows-4 gap-2 h-full">
+									<img src="assets/img/du-hoc-newlife-2.webp" class="col-span-4 row-span-4 object-cover w-full h-full rounded" alt="Newlife 1" />
+									<img src="assets/img/du-hoc-newlife-1.jpg" class="col-span-2 row-span-2 object-cover w-full h-full rounded" alt="Newlife 2" />
+									<img src="assets/img/du-hoc-newlife-3.jpg" class="col-span-2 row-span-2 object-cover w-full h-full rounded hidden sm:block" alt="Newlife 3" />
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- 3. CollaboratePro -->
+					<section class="project-split bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+						<div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-10 gap-6 items-start">
+							<div class="md:col-span-4 col-span-1">
+								<h3 class="text-xl font-bold">CollaboratePro</h3>
+								<p class="text-gray-600 mt-3">Hệ thống quản trị nội dung & cộng đồng sinh viên — full-stack development từ A→Z.</p>
+								<div class="mt-4 flex gap-3">
+									<a href="#" class="open-project inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700" data-title="CollaboratePro" data-desc="<ul class='list-disc pl-5 text-sm'><li>Xây dựng không gian số chuyên biệt cho sinh viên: nơi chia sẻ tài liệu học tập và kết nối cộng đồng.</li><li>Phát triển các tính năng tương tác, lưu trữ tài liệu thông minh và phân quyền người dùng chặt chẽ.</li><li>Tối ưu hóa quy trình trao đổi kiến thức, biến website thành một hệ sinh thái học tập năng động.</li></ul>" data-tech="Full-stack,Auth,Storage" data-gallery="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80">View Details</a>
+                                    
+								</div>
+								<ul class="text-sm text-gray-600 mt-4 space-y-1">
+									<li><strong>Type:</strong> Platform</li>
+									<li><strong>Date:</strong> 2025</li>
+									<li><strong>Outcome:</strong> Hệ sinh thái học tập</li>
+								</ul>
+							</div>
+							<div class="md:col-span-6 col-span-1">
+								<div class="grid grid-cols-6 grid-rows-4 gap-2 h-full">
+									<img src="assets/img/CollaboratePro.png" class="col-span-4 row-span-4 object-cover w-full h-full rounded" alt="CP 1" />
+									<img src="assets/img/CollaboratePro-2.jpg" class="col-span-2 row-span-2 object-cover w-full h-full rounded" alt="CP 2" />
+                                    <img src="assets/img/CollaboratePro-3.png" class="col-span-2 row-span-2 object-cover w-full h-full rounded hidden sm:block" alt="CP 3" />
+                                </div>
+							</div>
+						</div>
+					</section>
+
+					<!-- 4. Jobsnew -->
+					<section class="project-split bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
+						<div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-10 gap-6 items-start">
+							<div class="md:col-span-4 col-span-1">
+								<h3 class="text-xl font-bold">Jobsnew</h3>
+								<p class="text-gray-600 mt-3">Biên tập viên nội dung (Content Creator) — sáng tạo nội dung số chuẩn SEO.</p>
+								<div class="mt-4 flex gap-3">
+									<a href="#" class="open-project inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700" data-title="Jobsnew" data-desc="<ul class='list-disc pl-5 text-sm'><li>Xây dựng các bài viết giá trị, chuẩn kỹ thuật SEO giúp tiếp cận đúng tệp khách hàng mục tiêu.</li><li>Tối ưu hóa tỉ lệ chuyển đổi thông qua câu từ (Copywriting) sắc sảo và lôi cuốn.</li><li>Đảm bảo mật độ từ khóa tự nhiên, thân thiện với cả người đọc và thuật toán Google.</li></ul>" data-tech="SEO,Content,Copywriting" data-gallery="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80,https://images.unsplash.com/photo-1519999482648-25049ddd37b1?auto=format&fit=crop&w=1200&q=80">View Details</a>
+                                    
+								</div>
+								<ul class="text-sm text-gray-600 mt-4 space-y-1">
+									<li><strong>Type:</strong> Content</li>
+									<li><strong>Date:</strong> 2024</li>
+									<li><strong>Outcome:</strong> Nội dung chuẩn SEO, tăng chuyển đổi</li>
+								</ul>
+							</div>
+							<div class="md:col-span-6 col-span-1">
+								<div class="grid grid-cols-6 grid-rows-4 gap-2 h-full">
+									<img src="assets/img/Jobsnew-1.png" class="col-span-4 row-span-4 object-cover w-full h-full rounded" alt="Jobs 1" />
+									<img src="assets/img/Jobsnew-2.jpg" class="col-span-2 row-span-2 object-cover w-full h-full rounded" alt="Jobs 2" />
+									<img src="assets/img/Jobsnew-3.jpg" class="col-span-2 row-span-2 object-cover w-full h-full rounded hidden sm:block" alt="Jobs 3" />
+								</div>
+							</div>
+						</div>
+					</section>
+				</section>
+
+			<!-- (previous Skills removed; moved above Projects) -->
+
+			<!-- Contact / Footer -->
+			<section id="contact" class="mt-16 py-8">
+				<h3 class="text-xl font-semibold mb-2">Liên hệ</h3>
+				<p class="text-sm text-gray-600">Muốn trao đổi hoặc hợp tác? Gửi email tới <a href="mailto:duongtk.work@gmail.com" class="text-indigo-600 hover:underline">duongtk.work@gmail.com</a>.</p>
+			</section>
+		</main>
+
+		<footer class="bg-white border-t mt-12">
+			<div class="max-w-6xl mx-auto px-6 py-6 text-sm text-gray-600 flex items-center justify-between">
+				<div>© 2026 MyPortfolio. All rights reserved.</div>
+				<div class="flex gap-4 items-center">
+					<a href="#" class="text-gray-600 hover:text-blue-700 transition-colors" aria-label="LinkedIn">
+						<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM7.5 8h4.8v2.2h.1c.7-1.3 2.4-2.7 4.9-2.7 5.2 0 6.1 3.4 6.1 7.8V24h-5V15.2c0-2.1 0-4.8-2.9-4.8-2.9 0-3.3 2.2-3.3 4.6V24h-5V8z"/></svg>
+					</a>
+					<a href="#" class="text-gray-600 hover:text-blue-600 transition-colors" aria-label="Facebook">
+						<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.5 9.9v-7h-2.2V12h2.2V9.8c0-2.2 1.3-3.4 3.3-3.4.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 2.9h-1.9v7A10 10 0 0022 12z"/></svg>
+					</a>
+					<a href="mailto:you@example.com" class="text-gray-600 hover:text-red-600 transition-colors" aria-label="Email">
+						<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+					</a>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Modal -->
+		<div id="projectModal" class="fixed inset-0 hidden items-center justify-center z-50">
+			<div class="modal-backdrop absolute inset-0"></div>
+				<div class="relative bg-white rounded-lg shadow-lg max-w-6xl w-full mx-4 z-10 overflow-hidden">
+				<div class="p-4 flex items-start justify-between border-b">
+					<h3 id="modalTitle" class="text-lg font-semibold">Tiêu đề</h3>
+					<button id="modalClose" class="text-gray-600 hover:text-gray-900">✕</button>
+				</div>
+				<div class="p-4 grid md:grid-cols-2 gap-4">
+					<div>
+						<img id="modalImage" src="" alt="" class="w-full h-96 object-cover rounded" />
+						<!-- Gallery thumbnails (when project has multiple images) -->
+						<div id="modalGallery" class="mt-3 flex gap-2"></div>
+					</div>
+					<div>
+						<p id="modalDesc" class="text-gray-700"></p>
+						<div class="mt-4">
+							<h4 class="font-semibold">Công nghệ sử dụng</h4>
+							<div id="modalTech" class="flex flex-wrap gap-2 mt-2"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script>
+			AOS.init({ once: true });
+
+			// Simple mobile menu toggle
+			const menuBtn = document.getElementById('menuBtn');
+			const mobileMenu = document.getElementById('mobileMenu');
+			menuBtn && menuBtn.addEventListener('click', () => {
+				mobileMenu.classList.toggle('hidden');
+			});
+
+			// Modal logic for projects
+			const modal = document.getElementById('projectModal');
+			const modalTitle = document.getElementById('modalTitle');
+			const modalImage = document.getElementById('modalImage');
+			const modalDesc = document.getElementById('modalDesc');
+			const modalTech = document.getElementById('modalTech');
+			const modalClose = document.getElementById('modalClose');
+
+			function openModal(data) {
+				modalTitle.textContent = data.title;
+				modalImage.src = data.image;
+				modalImage.alt = data.title;
+				modalDesc.innerHTML = data.desc;
+				modalTech.innerHTML = '';
+				data.tech.forEach(t => {
+					const span = document.createElement('span');
+					span.className = 'px-2 py-1 bg-gray-100 rounded text-sm';
+					span.textContent = t;
+					modalTech.appendChild(span);
+				});
+					// handle gallery thumbnails if provided
+					if (data.gallery && data.gallery.length) populateGallery(data.gallery, data.image);
+					modal.classList.remove('hidden');
+					modal.classList.add('flex');
+			}
+
+				function populateGallery(gallery, active) {
+					const galleryContainer = document.getElementById('modalGallery');
+					galleryContainer.innerHTML = '';
+					gallery.forEach(src => {
+						const img = document.createElement('img');
+						img.src = src;
+						img.className = 'w-20 h-14 object-cover rounded cursor-pointer border border-gray-200';
+						img.addEventListener('click', () => { modalImage.src = src; });
+						galleryContainer.appendChild(img);
+					});
+					// set active image
+					if (active) modalImage.src = active;
+				}
+
+			function closeModal() {
+				modal.classList.remove('flex');
+				modal.classList.add('hidden');
+			}
+
+			modalClose.addEventListener('click', closeModal);
+			modal.addEventListener('click', (e) => {
+				if (e.target.classList.contains('modal-backdrop')) closeModal();
+			});
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape') closeModal();
+			});
+
+			// Bind open-project buttons (View Details) — prefer images from the project's DOM
+			document.querySelectorAll('.open-project').forEach(btn => {
+				btn.addEventListener('click', (e) => {
+					e.preventDefault();
+					const title = btn.getAttribute('data-title');
+					const desc = btn.getAttribute('data-desc');
+					const tech = (btn.getAttribute('data-tech') || '').split(',').map(s => s.trim()).filter(Boolean);
+					let gallery = [];
+					// Try to gather images from the sibling project section (right side)
+					const project = btn.closest('.project-split');
+					if (project) {
+						project.querySelectorAll('img').forEach(img => {
+							const src = img.getAttribute('src');
+							if (src && !gallery.includes(src)) gallery.push(src);
+						});
+					}
+					// Fallback to data-gallery attribute when DOM images not found
+					if (!gallery.length) {
+						gallery = (btn.getAttribute('data-gallery') || '').split(',').map(s => s.trim()).filter(Boolean);
+					}
+					openModal({ title, image: gallery[0] || '', desc, tech, gallery });
+				});
+			});
+
+			// Theme toggle (day/night)
+			const themeToggle = document.getElementById('themeToggle');
+			if (themeToggle) {
+				themeToggle.addEventListener('click', () => {
+					document.body.classList.toggle('dark');
+					const isDark = document.body.classList.contains('dark');
+					themeToggle.textContent = isDark ? '☀️' : '🌙';
+				});
+			}
+		</script>
+	</body>
+</html>
