@@ -1,0 +1,342 @@
+
+/* CSS Cơ bản - Reset margin và padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+/* Phần Header của trang web (Thanh điều hướng) */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d32f2f;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+/* Container chính cho bài viết */
+        .main-content {
+            max-width: 1000px; /* Đã tăng từ 800px lên 1000px để nội dung rộng hơn */
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+/* Bố cục bài viết (Article) */
+        .article-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+/* Tiêu đề bài viết */
+        .article-title {
+            font-size: 2.5rem;
+            color: #111;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            text-align: center; /* Đã thêm căn giữa tiêu đề */
+        }
+
+/* Thông tin Meta (Tác giả, Ngày đăng) */
+        .article-meta {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Đã thêm căn giữa cho khối thông tin */
+            gap: 12px;
+        }
+
+        .meta-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .author-tag {
+            background-color: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #444;
+        }
+
+/* Hình ảnh trong bài viết */
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            object-fit: cover;
+            max-height: 450px;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+/* Nội dung văn bản của bài viết */
+        .article-body p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+/* Điểm nhấn chữ cái đầu (Drop cap) cho đoạn đầu tiên */
+        .article-body > p:first-of-type::first-letter {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #d32f2f;
+            float: left;
+            margin-right: 8px;
+            line-height: 1;
+            margin-top: 5px;
+        }
+
+        /* ====================================================
+           CSS CHO PHẦN LƯU MÃ ƯU ĐÃI (COUPON SECTION)
+           ==================================================== */
+        .promo-section {
+            margin: 40px 0;
+            padding-top: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .promo-title {
+            font-size: 1.5rem;
+            color: #222;
+            font-weight: 700;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .promo-subtitle {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        /* Thẻ Coupon */
+        .coupon-card {
+            display: flex;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid #eaeaea;
+            margin-bottom: 35px;
+            position: relative;
+            min-height: 110px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm transition để hiệu ứng mượt mà */
+        }
+
+        /* Thêm hiệu ứng Hover cho thẻ Coupon */
+        .coupon-card:hover {
+            transform: translateY(-5px); /* Trượt lên nhẹ */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Đổ bóng to và rõ hơn */
+        }
+
+        /* Khi hover vào thẻ, background sẽ trượt để tạo hiệu ứng chuyển màu gradient động */
+        .coupon-card:hover .bg-orange,
+        .coupon-card:hover .bg-pink {
+            background-position: 100% 50%;
+        }
+
+        /* Vết cắt tròn 2 đầu (Holes) */
+        .coupon-card::before, .coupon-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ffffff; /* Cùng màu với nền bài viết */
+            border-radius: 50%;
+            left: 65%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border: 1px solid #eaeaea;
+        }
+
+        .coupon-card::before { 
+            top: -11px; 
+            border-bottom-color: transparent; 
+            border-left-color: transparent;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .coupon-card::after { 
+            bottom: -11px; 
+            border-top-color: transparent;
+            border-right-color: transparent;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        /* Nửa bên trái (Phần màu) */
+        .coupon-left {
+            width: 65%;
+            padding: 20px 15px;
+            color: #fff;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Đường đứt nét ngăn cách trắng */
+            border-right: 2px dashed rgba(255, 255, 255, 0.7); 
+            transition: background-position 0.5s ease; /* Chuyển động cuộn gradient mượt mà */
+        }
+
+        /* Sử dụng dải màu Gradient rực rỡ và kéo giãn kích thước nền để làm animation */
+        .bg-orange { 
+            background: linear-gradient(135deg, #ff9b00, #f06a35, #d84511);
+            background-size: 200% 200%;
+            background-position: 0% 50%;
+        }
+        .bg-pink { 
+            background: linear-gradient(135deg, #ff7eb3, #ff5572, #e02a4d);
+            background-size: 200% 200%;
+            background-position: 0% 50%;
+        }
+
+        .coupon-discount {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .coupon-desc {
+            font-size: 0.85rem;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        /* Nửa bên phải (Phần nút sử dụng) */
+        .coupon-right {
+            width: 35%;
+            padding: 15px 10px;
+            background-color: #fff;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .coupon-lbl {
+            font-size: 0.75rem;
+            color: #777;
+            margin-bottom: 2px;
+        }
+
+        .coupon-code {
+            font-size: 0.95rem;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* Nút sử dụng */
+        .btn-use {
+            background-color: #f06a35;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Thêm transition cho mượt */
+            width: 90%;
+            max-width: 120px;
+        }
+
+        .btn-use:hover { 
+            background-color: #d85724; /* Đổi sang màu cam cháy đậm hơn */
+            transform: scale(1.05); /* Phóng to nhẹ nút lên 5% */
+        }
+
+        .btn-disabled {
+            background-color: transparent;
+            color: #999;
+            font-size: 0.8rem;
+            border: none;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .promo-footer-text {
+            font-size: 1.1rem !important;
+            color: #333;
+            margin-top: 10px;
+        }
+
+
+        /* Phần Footer */
+        .site-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #222;
+            color: #aaa;
+            margin-top: 50px;
+        }
+
+        /* Responsive - Điều chỉnh cho màn hình nhỏ (Điện thoại) */
+        @media (max-width: 768px) {
+            .article-container {
+                padding: 20px;
+            }
+            .article-title {
+                font-size: 2rem;
+            }
+            .main-content {
+                margin: 20px auto;
+            }
+
+            /* Responsive cho phần mã giảm giá */
+            .coupon-left { width: 62%; padding: 15px 12px; }
+            .coupon-right { width: 38%; padding: 12px 5px; }
+            .coupon-card::before, .coupon-card::after { left: 62%; }
+            
+            .promo-title { font-size: 1.3rem; }
+            .coupon-discount { font-size: 1.15rem; }
+            .coupon-desc { font-size: 0.8rem; }
+            .coupon-code { font-size: 0.85rem; }
+            .btn-use { font-size: 0.75rem; padding: 6px 10px; }
+            .btn-disabled { font-size: 0.7rem; }
+        }
